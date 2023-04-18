@@ -13,4 +13,3 @@ def test_can_create_task():
 
     response = requests.put(ENDPOINT + "/create-task", json=payload)
     assert response.status_code == 200
-
