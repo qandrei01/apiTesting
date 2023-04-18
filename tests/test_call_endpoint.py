@@ -1,6 +1,6 @@
 import requests
 
-ENDPOINT = "https://todo.pixegami.io"
+from data.get_url import ENDPOINT
 
 
 def test_can_call_endpoint():
