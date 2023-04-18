@@ -1,4 +1,3 @@
-import requests
 
 from data.tasks import new_task_payload, create_task, update_task
 
