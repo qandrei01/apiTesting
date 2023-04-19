@@ -1,6 +1,6 @@
 import requests
 
-from data.get_url import ENDPOINT
+from config import ENDPOINT
 
 
 def create_task(payload):
@@ -21,3 +21,4 @@ def new_task_payload():
 
 def update_task(payload):
     return requests.put(ENDPOINT + "/update-task", json=payload)
+
