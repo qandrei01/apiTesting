@@ -29,3 +29,7 @@ def update_task(payload):
 
 def list_task(user_id):
     return requests.get(ENDPOINT + f"/list-tasks/{user_id}")
+
+
+def delete_task(task_id):
+    return requests.delete(ENDPOINT + f"/delete-task/{task_id}")
