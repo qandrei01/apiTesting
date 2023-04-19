@@ -7,8 +7,8 @@ def test_delete_task(base_url):
     payload = new_task_payload()
     create_task_response = create_task(payload)
     assert create_task_response.status_code == 200
-    task_id = create_task_response.json()["task"]["task_id"]
 
+    task_id = create_task_response.json()["task"]["task_id"]
     delete_task_response = delete_task(task_id)
     assert delete_task_response.status_code == 200
 
