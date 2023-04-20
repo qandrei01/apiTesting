@@ -33,3 +33,10 @@ def list_task(user_id):
 
 def delete_task(task_id):
     return requests.delete(ENDPOINT + f"/delete-task/{task_id}")
+
+
+def get_assert_response(payload, expected_response):
+    response = requests.put(ENDPOINT + "/create-task", json=payload)
+    if response.status_code != expected_response:
+        print(f"Task failed with status code {response.status_code}.")
+    assert response.status_code == expected_response

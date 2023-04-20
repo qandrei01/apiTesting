@@ -1,4 +1,4 @@
-import requests
+from data import tasks
 
 
 def test_create_without_content(base_url):
@@ -7,13 +7,7 @@ def test_create_without_content(base_url):
         "task_id": "test_task_id",
         "is_done": False,
     }
-
-    response = requests.put(base_url + "/create-task", json=payload)
-    if response.status_code != 200:
-        print(f"Task failed with status code {response.status_code}.")
-    else:
-        print(f"Task passed unexpectedly with status code {response.status_code}.")
-    assert response.status_code != 200
+    tasks.get_assert_response(payload, expected_response=422)
 
 
 def test_create_without_user(base_url):
@@ -23,12 +17,7 @@ def test_create_without_user(base_url):
         "is_done": False,
     }
 
-    response = requests.put(base_url + "/create-task", json=payload)
-    if response.status_code != 200:
-        print(f"Task failed with status code {response.status_code}.")
-    else:
-        print(f"Task passed unexpectedly with status code {response.status_code}.")
-    assert response.status_code != 200
+    tasks.get_assert_response(payload, expected_response=500)
 
 
 def test_create_without_task(base_url):
@@ -38,12 +27,7 @@ def test_create_without_task(base_url):
         "is_done": False,
     }
 
-    response = requests.put(base_url + "/create-task", json=payload)
-    if response.status_code != 200:
-        print(f"Task failed with status code {response.status_code}.")
-    else:
-        print(f"Task passed unexpectedly with status code {response.status_code}.")
-    assert response.status_code != 200
+    tasks.get_assert_response(payload, expected_response=200)
 
 
 def test_create_without_done(base_url):
@@ -53,24 +37,25 @@ def test_create_without_done(base_url):
         "task_id": "test_task_id",
     }
 
-    response = requests.put(base_url + "/create-task", json=payload)
-    if response.status_code != 200:
-        print(f"Task failed with status code {response.status_code}.")
-    else:
-        print(f"Task passed unexpectedly with status code {response.status_code}.")
-    assert response.status_code != 200
+    tasks.get_assert_response(payload, expected_response=200)
+
+
+def test_create_with_done_True(base_url):
+    payload = {
+        "content": "test_content",
+        "user_id": "test_user_id",
+        "task_id": "test_task_id",
+        "is_done": True,
+    }
+
+    tasks.get_assert_response(payload, expected_response=200)
 
 
 def test_create_empty(base_url):
     payload = {
     }
 
-    response = requests.put(base_url + "/create-task", json=payload)
-    if response.status_code != 200:
-        print(f"Task failed with status code {response.status_code}.")
-    else:
-        print(f"Task passed unexpectedly with status code {response.status_code}.")
-    assert response.status_code != 200
+    tasks.get_assert_response(payload, expected_response=422)
 
 
 def test_create_with_wrong_data(base_url):
@@ -81,12 +66,7 @@ def test_create_with_wrong_data(base_url):
         "test4": False,
     }
 
-    response = requests.put(base_url + "/create-task", json=payload)
-    if response.status_code != 200:
-        print(f"Task failed with status code {response.status_code}.")
-    else:
-        print(f"Task passed unexpectedly with status code {response.status_code}.")
-    assert response.status_code != 200
+    tasks.get_assert_response(payload, expected_response=422)
 
 
 def test_create_with_extra_data(base_url):
@@ -98,9 +78,4 @@ def test_create_with_extra_data(base_url):
         "extra_data": "test"
     }
 
-    response = requests.put(base_url + "/create-task", json=payload)
-    if response.status_code != 200:
-        print(f"Task failed with status code {response.status_code}.")
-    else:
-        print(f"Task passed unexpectedly with status code {response.status_code}.")
-    assert response.status_code != 200
+    tasks.get_assert_response(payload, expected_response=200)
