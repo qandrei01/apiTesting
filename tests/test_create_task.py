@@ -9,5 +9,5 @@ def test_can_create_task(base_url):
         "is_done": False,
     }
 
-    response = requests.put(base_url + "/create-task", json=payload)
+    response = requests.put(base_url + "/create-task", json=payload, timeout=1)
     assert response.status_code == 200

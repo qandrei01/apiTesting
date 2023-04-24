@@ -7,12 +7,12 @@ def test_get_task_id(base_url):
         "user_id": "test_user_id",
         "is_done": False,
     }
-    create_task_response = requests.put(base_url + "/create-task", json=payload)
+    create_task_response = requests.put(base_url + "/create-task", json=payload, timeout=1)
     assert create_task_response.status_code == 200
 
     data = create_task_response.json()
     task_id = data["task"]["task_id"]
-    get_task_response = requests.get(base_url + f"/get-task/{task_id}")
+    get_task_response = requests.get(base_url + f"/get-task/{task_id}", timeout=1)
     assert get_task_response.status_code == 200
 
     get_task_data = get_task_response.json()
