@@ -1,10 +1,7 @@
 
-from data.tasks import new_task_payload, create_task, update_task, get_task
-
-
-def test_update_task():
-    payload = new_task_payload()
-    create_task_response = create_task(payload)
+def test_update_task(tasks):
+    payload = tasks.new_task_payload()
+    create_task_response = tasks.create_task(payload)
     assert create_task_response.status_code == 200
 
     task_id = create_task_response.json()["task"]["task_id"]
@@ -14,10 +11,10 @@ def test_update_task():
         "content": "test_updated_content",
         "is_done": True,
     }
-    update_task_response = update_task(new_payload)
+    update_task_response = tasks.update_task(new_payload)
     assert update_task_response.status_code == 200
 
-    get_task_response = get_task(task_id)
+    get_task_response = tasks.get_task(task_id)
     assert get_task_response.status_code == 200
 
     get_task_data = get_task_response.json()

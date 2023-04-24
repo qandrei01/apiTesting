@@ -1,46 +1,45 @@
-from data import tasks
 
 
-def test_create_without_content(base_url):
+def test_create_without_content(base_url, assert_util):
     payload = {
         "user_id": "test_user_id",
         "task_id": "test_task_id",
         "is_done": False,
     }
-    tasks.get_assert_response(payload, expected_response=422)
+    assert_util.assert_response(payload, expected_response=422)
 
 
-def test_create_without_user(base_url):
+def test_create_without_user(base_url, assert_util):
     payload = {
         "content": "test_content",
         "task_id": "test_task_id",
         "is_done": False,
     }
 
-    tasks.get_assert_response(payload, expected_response=500)
+    assert_util.assert_response(payload, expected_response=500)
 
 
-def test_create_without_task(base_url):
+def test_create_without_task(base_url, assert_util):
     payload = {
         "content": "test_content",
         "user_id": "test_user_id",
         "is_done": False,
     }
 
-    tasks.get_assert_response(payload, expected_response=200)
+    assert_util.assert_response(payload, expected_response=200)
 
 
-def test_create_without_done(base_url):
+def test_create_without_done(base_url, assert_util):
     payload = {
         "content": "test_content",
         "user_id": "test_user_id",
         "task_id": "test_task_id",
     }
 
-    tasks.get_assert_response(payload, expected_response=200)
+    assert_util.assert_response(payload, expected_response=200)
 
 
-def test_create_with_done_True(base_url):
+def test_create_with_done_True(base_url, assert_util):
     payload = {
         "content": "test_content",
         "user_id": "test_user_id",
@@ -48,17 +47,17 @@ def test_create_with_done_True(base_url):
         "is_done": True,
     }
 
-    tasks.get_assert_response(payload, expected_response=200)
+    assert_util.assert_response(payload, expected_response=200)
 
 
-def test_create_empty(base_url):
+def test_create_empty(base_url, assert_util):
     payload = {
     }
 
-    tasks.get_assert_response(payload, expected_response=422)
+    assert_util.assert_response(payload, expected_response=422)
 
 
-def test_create_with_wrong_data(base_url):
+def test_create_with_wrong_data(base_url, assert_util):
     payload = {
         "test1": "test_content",
         "test2": "test_user_id",
@@ -66,10 +65,10 @@ def test_create_with_wrong_data(base_url):
         "test4": False,
     }
 
-    tasks.get_assert_response(payload, expected_response=422)
+    assert_util.assert_response(payload, expected_response=422)
 
 
-def test_create_with_extra_data(base_url):
+def test_create_with_extra_data(base_url, assert_util):
     payload = {
         "content": "test_content",
         "user_id": "test_user_id",
@@ -78,4 +77,4 @@ def test_create_with_extra_data(base_url):
         "extra_data": "test"
     }
 
-    tasks.get_assert_response(payload, expected_response=200)
+    assert_util.assert_response(payload, expected_response=200)
