@@ -1,7 +1,5 @@
-TODO:
- * Add contents to this Readme file. Install and run instructions, quick summary, etc.
- * Add requirements.txt with all libraries used and the working versions
- * Add .gitignore file from a Python template
+To generate allure reports:
 
-
-Good Luck!
+- run tests with 'pytest --alluredir=./allure-report' command in terminal
+- after tests are finished, run 'allure serve ./allure-report' command in terminal
+Raportul va fi automatizat curand dar deja am petrecut prea multe ore:))
