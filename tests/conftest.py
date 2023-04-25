@@ -1,3 +1,5 @@
+import subprocess
+
 import pytest
 
 from config import ENDPOINT
