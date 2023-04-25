@@ -9,27 +9,27 @@ class Tasks:
 
     @staticmethod
     def get_task(task_id):
-        get_task_request = requests.get(ENDPOINT + f"/get-task/{task_id}", timeout=1)
+        get_task_request = requests.get(ENDPOINT + f"/get-task/{task_id}", timeout=2)
         return get_task_request
 
     @staticmethod
     def update_task(payload):
-        update_task_request = requests.put(ENDPOINT + "/update-task", json=payload, timeout=1)
+        update_task_request = requests.put(ENDPOINT + "/update-task", json=payload, timeout=2)
         return update_task_request
 
     @staticmethod
     def list_task(user_id):
-        list_task_request = requests.get(ENDPOINT + f"/list-tasks/{user_id}", timeout=1)
+        list_task_request = requests.get(ENDPOINT + f"/list-tasks/{user_id}", timeout=2)
         return list_task_request
 
     @staticmethod
     def delete_task(task_id):
-        delete_task_request = requests.delete(ENDPOINT + f"/delete-task/{task_id}", timeout=1)
+        delete_task_request = requests.delete(ENDPOINT + f"/delete-task/{task_id}", timeout=2)
         return delete_task_request
 
     @staticmethod
     def create_task(payload):
-        create_task_request = requests.put(ENDPOINT + "/create-task", json=payload, timeout=1)
+        create_task_request = requests.put(ENDPOINT + "/create-task", json=payload, timeout=2)
         return create_task_request
 
     @staticmethod
@@ -46,7 +46,7 @@ class Tasks:
 class AssertUtil:
     @staticmethod
     def assert_response(payload, expected_response=""):
-        response = requests.put(ENDPOINT + "/create-task", json=payload, timeout=1)
+        response = requests.put(ENDPOINT + "/create-task", json=payload, timeout=2)
         if response.status_code != expected_response:
             print(f"Task failed with status code {response.status_code}.")
         assert response.status_code == expected_response
