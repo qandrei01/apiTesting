@@ -52,6 +52,7 @@ coverage.xml
 cover/
 allure-report
 allure-results
+report.html
 
 # Translations
 *.mo
